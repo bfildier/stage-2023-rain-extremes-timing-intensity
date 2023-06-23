@@ -161,14 +161,11 @@ class MCS_Lifecycle(object):
 def load_TOOCAN_DYAMOND(FileTOOCAN):
 
     lunit = gzip.open(FileTOOCAN, "rt")
-    print(FileTOOCAN)
-    print("here")
 
     #
     # Read the Header
     ##########################
     header1 = lunit.readline()
-    print("header1 done")
     header2 = lunit.readline()
     header3 = lunit.readline()
     header4 = lunit.readline()
@@ -178,7 +175,6 @@ def load_TOOCAN_DYAMOND(FileTOOCAN):
     header8 = lunit.readline()
     header9 = lunit.readline()
     header10 = lunit.readline()
-    print("header10 done")
     header11 = lunit.readline()
     header12 = lunit.readline()
     header13 = lunit.readline()
@@ -190,16 +186,13 @@ def load_TOOCAN_DYAMOND(FileTOOCAN):
     header18 = lunit.readline()
     header19 = lunit.readline()
     header20 = lunit.readline()
-    print("header20 done")
     header21 = lunit.readline()
 
     data = []
     iMCS = -1
     lines = lunit.readlines()
     
-    print("here")
     for iline in lines:
-        print(f"here{iline}")
         Values = iline.split()
         #print(iline,Values)
 
