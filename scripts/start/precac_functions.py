@@ -2,17 +2,22 @@ import xarray as xr
 import gc,os
 import pandas as pd
 
+#-- Paths
+
 # DIR_DYAMOND (where DYAMOND data are)
 
-path_DYAMOND_REGIONS = '/home/gmaxemin/windows/internship_g_maxemin/DYAMOND_REGIONS'
+path_DYAMOND_REGIONS = '/data/bfildier/DYAMOND_REGIONS/'
 path_reg1_SAM = os.path.join(path_DYAMOND_REGIONS, "130E_165E_0N_20N/SAM")
 path_2D = os.path.join(path_reg1_SAM,'2D')
 
 DIR_DYAMOND = path_2D
+print(DIR_DYAMOND)
 
 # DIR_DATA (where segmentation relation table is)
 
 DIR_DATA = "/home/gmaxemin/code/stage-2023-rain-extremes-timing-intensity/input/"
+
+#-- Functions
 
 def loadPrecac(i_t,df):
     
@@ -23,6 +28,7 @@ def loadPrecac(i_t,df):
     # precac = xr.open_dataarray(os.path.join(DIR_DYAMOND,file_precac)).load()[0]
     
     return precac
+
 
 def loadPrecacFilename(i_t,df):
     
