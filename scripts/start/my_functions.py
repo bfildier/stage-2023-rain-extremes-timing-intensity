@@ -20,8 +20,6 @@ from precac_functions import *
 
 # note: variable input must be the same string as found in file names. E.g. precac must be "Precac"
 
-DIR_DATA = "/home/gmaxemin/code/stage-2023-rain-extremes-timing-intensity/input/"
-
 def find_file_with_string(file_list, search_string, start_index, end_index):
     for index, file_name in enumerate(file_list):
         if start_index <= len(file_name) >= end_index and search_string in file_name[start_index:end_index]:
