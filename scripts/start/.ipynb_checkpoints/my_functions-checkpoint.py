@@ -18,7 +18,7 @@ from matplotlib.colors import LogNorm
 
 from precac_functions import *
 
-# note: variable input must be the same string as found in file names. E.g. precac must be "Precac"
+# note: variable input must be the same string as found in file names. E.g. prec must be "Prec"
 
 def find_file_with_string(file_list, search_string, start_index, end_index):
     for index, file_name in enumerate(file_list):
@@ -40,10 +40,10 @@ def plot_singletime_var(variable: str, timestamp: str):
     print("working")
     
     from matplotlib.colors import LogNorm
-    name_dict = {"OM500":"Pressure velocity at 500 mb", "T2mm":"2-m temperature", "OM850":"Pressure velocity at 850 mb", "Precac":"Surface Accum Precip.", "PW":"Precipitable Water", "CWP":"Cloud Water Path", "U10m":"10-m zonal wind", "RH500":"Relative Humidity 500mb", "PSFC":"P at the surface","V10m":"10-m meridional wind","SHF":"Sensible Heat Flux", "LHF":"Latent Heat Flux"}
-    unit_dict = {"OM500":"Pa/s","T2mm":"K", "OM850":"Pa/s","Precac":"mm", "PW":"kg/m²", "CWP":"kg/m²", "U10m":"m/s", "RH500":"", "PSFC":"mbar", "V10m":"m/s","SHF":"W/m²", "LHF":"W/m²"}
+    name_dict = {"OM500":"Pressure velocity at 500 mb", "T2mm":"2-m temperature", "OM850":"Pressure velocity at 850 mb", "Prec":"Surface Accum Precip.", "PW":"Precipitable Water", "CWP":"Cloud Water Path", "U10m":"10-m zonal wind", "RH500":"Relative Humidity 500mb", "PSFC":"P at the surface","V10m":"10-m meridional wind","SHF":"Sensible Heat Flux", "LHF":"Latent Heat Flux"}
+    unit_dict = {"OM500":"Pa/s","T2mm":"K", "OM850":"Pa/s","Prec":"mm", "PW":"kg/m²", "CWP":"kg/m²", "U10m":"m/s", "RH500":"", "PSFC":"mbar", "V10m":"m/s","SHF":"W/m²", "LHF":"W/m²"}
         
-    if variable == "Precac":
+    if variable == "Prec":
         seg_index = timestamp_to_seg_index(timestamp)
         print("i_t:", seg_index)
         df = loadRelTable()
@@ -72,10 +72,10 @@ def plot_singletime_var(variable: str, timestamp: str):
         vmax = np.max(valid_values)
         
     else:
-        # Rest of the code...
         matching_files = glob.glob(path_2D + '/*{}*'.format(variable))
         sorted_files = sorted(matching_files)
-        i_t = find_file_with_string(sorted_files, timestamp, 119, 129)  # finds index in list of files (119:129 are character indices for time stamp)
+        i_t = find_file_with_string(sorted_files, timestamp, 90, 100)  # finds index in list of files (90:100 are character indices for time stamp)
+        
 
         file = sorted_files[i_t]
         dataset = netCDF4.Dataset(file)
@@ -112,7 +112,7 @@ def anim_singletime_var(variable: str, timestamps: list = None, desired_duration
 
     # Use all available timestamps if none are provided
     if timestamps is None:
-        timestamps = get_timestamps(sorted_files, 119, 129)
+        timestamps = get_timestamps(sorted_files, 90, 100)
 
     # Get the overall minimum and maximum values of variable_data
     min_value = float('inf')
@@ -120,7 +120,8 @@ def anim_singletime_var(variable: str, timestamps: list = None, desired_duration
 
     # Calculate the overall minimum and maximum values
     for timestamp in timestamps:
-        i_t = find_file_with_string(sorted_files, timestamp, 119, 129)
+        i_t = find_file_with_string(sorted_files, timestamp, 90, 100)
+        print(timestamp)
         file = sorted_files[i_t]
         dataset = netCDF4.Dataset(file)
 
@@ -134,7 +135,7 @@ def anim_singletime_var(variable: str, timestamps: list = None, desired_duration
     # Generate plots for each timestamp with a progress bar
     with tqdm(total=len(timestamps), desc='Generating Frames') as pbar:
         for timestamp in timestamps:
-            i_t = find_file_with_string(sorted_files, timestamp, 119, 129)
+            i_t = find_file_with_string(sorted_files, timestamp, 90, 100)
             file = sorted_files[i_t]
             dataset = netCDF4.Dataset(file)
 

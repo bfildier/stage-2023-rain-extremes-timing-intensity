@@ -60,7 +60,7 @@ def loadPref_nc_file(i_t,df):
     
     # i_t to timestamp
     file_name = df.loc[i_t, 'path_dyamond']
-    timestamp = file_name[119:129]
+    timestamp = file_name[90:100]
     print(timestamp)
     
     # Specify the output file path and name
